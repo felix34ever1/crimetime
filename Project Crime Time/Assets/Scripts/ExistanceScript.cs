@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ExistanceScript : MonoBehaviour
 {
+    public int health = 2;
     public GameObject box;
     // Start is called before the first frame update
     void Start()
@@ -19,6 +20,12 @@ public class ExistanceScript : MonoBehaviour
 
     public void DeleteBox()
     {
-        Destroy(box);
+        health = health - 1;
+
+        if (health <= 0)
+        {
+            Destroy(box);
+        }
+
     }
 }
