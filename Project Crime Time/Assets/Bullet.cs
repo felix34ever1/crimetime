@@ -15,21 +15,16 @@ public class Bullet : MonoBehaviour
         rb.velocity = transform.right * speed;
     }
 
-//    private void Update()
-//    {
-//        while (x != bulletTime)
-//        {
-//            x = x + 1;
-//        } 
-//        else
-//        {
-//            Destroy(bullet);
-//        }
-//    }
+
 
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        Debug.Log(hitInfo.name);
+        ExistanceScript box = hitInfo.GetComponent<ExistanceScript>();
+        if (box != null)
+        {
+            box.DeleteBox();
+        }
+        
         Destroy(bullet);
     }
 
