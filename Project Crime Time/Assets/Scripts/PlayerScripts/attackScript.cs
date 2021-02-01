@@ -20,7 +20,7 @@ public class attackScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("f"))
+        if (Input.GetKeyDown("f")) //Runs the shoot function
         {
             Shoot();
         }

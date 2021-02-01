@@ -5,6 +5,7 @@ using UnityEngine;
 public class HealthScript : MonoBehaviour
 {
     public int health = 2;
+    public int damageAmount = 3;
     public GameObject go;//game object. Suppossed to be itself
     // Start is called before the first frame update
     void Start()
@@ -18,9 +19,9 @@ public class HealthScript : MonoBehaviour
         
     }
 
-    public void DeleteBox()
+    public void TakeDamage(int damageAmount)//The function that calculates damage damage.
     {
-        health = health - 1;
+        health = health - damageAmount;
 
         if (health <= 0)
         {

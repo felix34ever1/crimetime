@@ -25,7 +25,7 @@ public class MovementScript : MonoBehaviour
         {
             tf.rotation = new Quaternion(0, 0, 0, 0);
         }
-        else if (!FacingRight)
+        else if (!FacingRight)//if not facing right
         {
             tf.rotation = new Quaternion(0, 180, 0, 0);
         }
@@ -49,13 +49,13 @@ public class MovementScript : MonoBehaviour
                 Flip(); 
             }
         }
-        else//if the 
+        else//if the character is not supposed to move(eg the player is not pressing d or a), the velocity of the character's x axis is slowly reduced to 0.
         {
             rb.velocity = new Vector2(rb.velocity.x/1.1f, rb.velocity.y);
         }
-        if (tf.position.y > LowYAxis+3)
+        if (tf.position.y > LowYAxis+3) // This is to check if the player has jumped too high in which case his y velocity is reduced so that he starts falling
         {
-            rb.velocity = new Vector2(rb.velocity.x, -1);
+            rb.velocity = new Vector2(rb.velocity.x, -10);
             
         }
 
@@ -63,11 +63,11 @@ public class MovementScript : MonoBehaviour
     }
 
     private void OnCollisionStay2D(Collision2D collision)
-    //Allows for jumping as long as the player is colliding.
-    //Need to make it so that it has to only be colliding on the floor so it can't wall jump or stuff. (Unless we want to do that)
-    //Bug: can spam w while on the side of the wall and player will get flung up.
+
     {
-        
+        //Allows for jumping as long as the player is colliding.
+        //Need to make it so that it has to only be colliding on the floor so it can't wall jump or stuff. (Unless we want to do that)
+        //Bug: can spam w while on the side of the wall and player will get flung up.
         if (Input.GetKeyDown("w"))
         {
             rb.velocity = new Vector2(rb.velocity.x, upwardsForce * Time.deltaTime);
