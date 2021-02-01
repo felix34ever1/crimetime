@@ -143,4 +143,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  box: {fileID: 3446188560476221659}
+  go: {fileID: 3446188560476221659}

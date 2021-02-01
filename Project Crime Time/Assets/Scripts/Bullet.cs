@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
     public float speed = 10f;
     public Rigidbody2D rb;
     public GameObject bullet;
-    public float liveTime = 5;
+    public float liveTime = 2;
     private int x = 0;
     // Start is called before the first frame update
     void Start()
@@ -26,7 +26,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        ExistanceScript box = hitInfo.GetComponent<ExistanceScript>();
+        HealthScript box = hitInfo.GetComponent<HealthScript>();
         if (box != null)
         {
             box.DeleteBox();

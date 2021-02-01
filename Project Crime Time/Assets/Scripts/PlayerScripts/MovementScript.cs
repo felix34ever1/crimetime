@@ -5,6 +5,7 @@ using UnityEngine;
 public class MovementScript : MonoBehaviour
 {
 
+    public float LowYAxis = 3;
     public Rigidbody2D rb;
     public Transform tf;
     bool FacingRight = true;
@@ -47,8 +48,13 @@ public class MovementScript : MonoBehaviour
                 Flip(); 
             }
         }
+        if (tf.position.y > LowYAxis+3)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, -1);
+            
+        }
 
- 
+
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -56,10 +62,13 @@ public class MovementScript : MonoBehaviour
     //Need to make it so that it has to only be colliding on the floor so it can't wall jump or stuff. (Unless we want to do that)
     //Bug: can spam w while on the side of the wall and player will get flung up.
     {
+        
         if (Input.GetKeyDown("w"))
         {
             rb.AddForce(new Vector2(0f, upwardsForce * Time.deltaTime));
         }
+        LowYAxis = tf.position.y;
+
     }
     
     //Just changes a variable to check if the player is facing right or not. Then that variable is used back in the update() code to check what direction to face.

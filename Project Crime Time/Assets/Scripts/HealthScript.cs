@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExistanceScript : MonoBehaviour
+public class HealthScript : MonoBehaviour
 {
     public int health = 2;
-    public GameObject box;
+    public GameObject go;//game object. Suppossed to be itself
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +24,7 @@ public class ExistanceScript : MonoBehaviour
 
         if (health <= 0)
         {
-            Destroy(box);
+            Destroy(go);
         }
 
     }
