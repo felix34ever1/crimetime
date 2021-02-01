@@ -34,19 +34,24 @@ public class MovementScript : MonoBehaviour
 
         if (Input.GetKey("d"))//Adds movement right
         {
-            rb.AddForce(new Vector2(sidewaysForce*Time.deltaTime,0f));
+            rb.velocity = new Vector2(sidewaysForce*Time.deltaTime,rb.velocity.y);
             if (!FacingRight)
             {
                 Flip();
             }
+            
         }
-        if (Input.GetKey("a"))//Adds movement left
+        else if (Input.GetKey("a"))//Adds movement left
         {
-            rb.AddForce(new Vector2(-sidewaysForce * Time.deltaTime, 0f));
+            rb.velocity = new Vector2(-sidewaysForce * Time.deltaTime, rb.velocity.y);
             if (FacingRight)
             {
                 Flip(); 
             }
+        }
+        else//if the 
+        {
+            rb.velocity = new Vector2(rb.velocity.x/1.1f, rb.velocity.y);
         }
         if (tf.position.y > LowYAxis+3)
         {
@@ -65,7 +70,7 @@ public class MovementScript : MonoBehaviour
         
         if (Input.GetKeyDown("w"))
         {
-            rb.AddForce(new Vector2(0f, upwardsForce * Time.deltaTime));
+            rb.velocity = new Vector2(rb.velocity.x, upwardsForce * Time.deltaTime);
         }
         LowYAxis = tf.position.y;
 
