@@ -9,8 +9,12 @@ public class enemyScript : MonoBehaviour
     public Transform player;// the gameobject of the player.
     public int range; // the range that the detection of the enemy will be
     public float movementSpeed = 5f; //The movement speed of the enemy.
-    public Transform CastPoint; // Where the raycasting will be shot from on the enemy
+    public Transform CastPoint; // Where the raycasting will be shot from on the enemy/ where the bullet will be shot from
+    public GameObject bulletPrefab; // The bullet that the enemy will fire
+    public float ShootDelay = 2; //The amount of seconds that the enemy will await before firing!
+    public float ShootCountDown = 2;//What shoot delay will reset to
     bool isFacingRight = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +30,9 @@ public class enemyScript : MonoBehaviour
             if (canSeePlayer(range))//if the player can be seen with no obstructions in the way
             {
                 chasePlayer();//The enemy will go towards the player
+                Shoot();
+
+              
             }
             else
             {
@@ -106,4 +113,14 @@ public class enemyScript : MonoBehaviour
         return (val);
     }
 
+    private void Shoot()
+    {
+        ShootDelay -= Time.deltaTime;
+        if (ShootDelay <= 0)
+        {
+            //Currently it spawns a bullet at the castpoint which is on the front of the player.
+            Instantiate(bulletPrefab, CastPoint.position, CastPoint.rotation);
+            ShootDelay = ShootCountDown;
+        }
+    }
 }
